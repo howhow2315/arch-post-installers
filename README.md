@@ -2,6 +2,9 @@
 
 Post `archinstall` installers
 
+> [!WARNING]
+> This repo is WIP, and nothing from it should be ran!
+
 ----
 
 Goals:  
