@@ -2,17 +2,13 @@
 [[ ! $COMMON_INITIALIZED ]] && source ./common.sh
 _require_root "$@"
 
+# NOTES:
+# Label root partition as "Root"
+# Maybe add a pacman -S --noconfirm wrapper that doesnt force reinstall to make rerunning faster?
+
 # Add host to hosts
 HOSTNAME=$(cat /etc/hostname)
 grep -q "$HOSTNAME" /etc/hosts || echo "127.0.1.1    $HOSTNAME.localdomain    $HOSTNAME" || _silently sudo tee -a /etc/hosts
-
-# Add custom pacman repo [howhow]
-_silently grep -i "howhow" /etc/pacman.conf || _silently sudo tee -a /etc/pacman.conf <<'EOF'
-
-[howhow]
-SigLevel = Optional TrustAll
-Server = https://howhow2315.github.io/linux-packages
-EOF
 
 # Mirrors and system upgrade
 _notif_sep "Updating mirrors and upgrading system..."

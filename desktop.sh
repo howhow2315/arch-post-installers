@@ -25,7 +25,7 @@ pacman -S --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji
 
 # Plasma cleanup
 if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]] || _silently pgrep -x plasmashell; then
-    echo "Plasma detected: Running cleanup..."
+    _notif "KDE Plasma detected..." i
 
     # Flatpak + Flathub
     _notif_sep "Installing Flatpak + enabling Flathub..."
@@ -33,13 +33,14 @@ if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]] || _silently pgrep -x plasmashell; th
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
     # Define apps
-    pacman_apps=(firefox)
+    pacman_apps=(
+        firefox
+        filelight
+    )
     flatpak_apps=(
         com.github.tchx84.Flatseal
         it.mijorus.gearlever
-        io.github.andreibachim.shortcut
         org.libreoffice.LibreOffice
-        # org.qbittorrent.qBittorrent
     )
 
     # Install pacman apps
