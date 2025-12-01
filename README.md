@@ -5,6 +5,13 @@ Post `archinstall` installers
 > [!WARNING]
 > This repo is WIP, and nothing from it should be ran!
 
+> [!TIP]
+> If for some reason you'd like to run this anyway, please use
+> ```sh
+> git clone https://github.com/howhow2315/arch-post-installers.git
+> ```
+> and then run them how youd like.
+
 ----
 
 Goals:  
