@@ -73,3 +73,4 @@ fi
 
 _notif "Applying sysctl parameters..." o
 _run_as_root sysctl --system
+_notif "ZRAM, and swap configuration complete! Please reboot for initialization." o

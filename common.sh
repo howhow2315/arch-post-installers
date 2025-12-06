@@ -141,3 +141,13 @@ _get_rotational_flag() {
 _pacstall() {
    _run_as_root pacman -S --noconfirm --needed "$@"
 }
+
+# Reboot after ${1:-3}s countdown
+_reboot() {
+    local timeleft="${1:-3}"
+    while [ $timeleft -gt 0 ]; do
+        _notif "Rebooting in $timeleft..."; _bell; sleep 1
+        ((timeleft--))
+    done
+    reboot
+}

@@ -54,9 +54,4 @@ fi
 
 # Done
 _notif "Arch Linux post install setup complete!" o
-timeleft=3
-while [ $timeleft -gt 0 ]; do
-    _notif "Rebooting in $timeleft..."; _bell; sleep 1
-    ((timeleft--)) # decrement the counter
-done
-reboot
+_reboot
