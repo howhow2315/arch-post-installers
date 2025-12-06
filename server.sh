@@ -15,8 +15,10 @@ if systemctl is-active --quiet docker; then
 
     wget -O /usr/bin/ufw-docker https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker
     ufw-docker install
-    ufw reload
 fi
+
+ufw allow from 192.168.0.0/16 to any port 2222 proto tcp comment "SSH LAN" # Allow SSH on port 2222 only from LAN
+ufw reload
 
 # Done
 _notif "Arch Linux post install setup complete!" o

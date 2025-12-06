@@ -117,6 +117,3 @@ MaxAuthTries 3
 # Disable banners to avoid fingerprinting
 DebianBanner no
 EOF
-
-ufw allow from 192.168.0.0/16 to any port 2222 proto tcp comment "SSH LAN" # Allow SSH on port 2222 only from LAN
-ufw reload
