@@ -2,7 +2,7 @@
 [[ ! $COMMON_INITIALIZED ]] && source ./common.sh
 
 #### ZRAM ####
-_silently pacman -Qi zram-generator || _run_as_root pacman -S --noconfirm zram-generator
+_silently pacman -Qi zram-generator || _pacstall zram-generator
 
 _notif "Writing /etc/systemd/zram-generator.conf..." o
 _run_as_root tee /etc/systemd/zram-generator.conf <<'EOF'

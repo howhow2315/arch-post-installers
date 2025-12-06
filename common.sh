@@ -136,3 +136,8 @@ _get_rotational_flag() {
 
     echo "$rotational"
 }
+
+# Install something via pacman automatically without reinstalling
+_pacstall() {
+   _run_as_root pacman -S --noconfirm --needed "$@"
+}

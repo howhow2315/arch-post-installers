@@ -21,7 +21,7 @@ fi
 
 # Fonts
 _notif "Installing fonts"
-pacman -S --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji
+_pacstall noto-fonts noto-fonts-cjk noto-fonts-emoji
 
 # Plasma cleanup
 if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]] || _silently pgrep -x plasmashell; then
@@ -29,7 +29,7 @@ if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]] || _silently pgrep -x plasmashell; th
 
     # Flatpak + Flathub
     _notif_sep "Installing Flatpak + enabling Flathub..."
-    pacman -S --noconfirm flatpak
+    _pacstall flatpak
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
     # Define apps
@@ -45,7 +45,7 @@ if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]] || _silently pgrep -x plasmashell; th
 
     # Install pacman apps
     _notif_sep "Installing pacman apps..."
-    pacman -S --noconfirm "${pacman_apps[@]}"
+    _pacstall "${pacman_apps[@]}"
 
     # Install flatpak apps
     _notif_sep "Installing flatpak apps..."

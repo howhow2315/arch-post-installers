@@ -4,7 +4,7 @@
 # IME
 _notif_sep "IME..."
 _notif "Installing fcitx5..."
-pacman -S --noconfirm fcitx5-im fcitx5-configtool fcitx5-gtk fcitx5-qt
+_pacstall fcitx5-im fcitx5-configtool fcitx5-gtk fcitx5-qt
 
 cat <<EOF >> /etc/environment
 

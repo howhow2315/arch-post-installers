@@ -4,7 +4,6 @@ _require_root "$@"
 
 # NOTES:
 # Label root partition as "Root"
-# Maybe add a pacman -S --noconfirm wrapper that doesnt force reinstall to make rerunning faster?
 
 # Add host to hosts
 HOSTNAME=$(cat /etc/hostname)
@@ -18,14 +17,14 @@ reflector --score 25 --latest 25 --threads 10 --protocol https --sort rate --sav
 pacman -Syu
 
 # AUR package manager
-pacman -S --noconfirm aurinstall
+_pacstall aurinstall
 aurinstall paru-bin
 pacman -R --noconfirm aurinstall
 
 # Battery
 if _silently ls /sys/class/power_supply/BAT*; then
     _notif_sep "Battery detected installing power saving..."
-    pacman -S --noconfirm tlp
+    _pacstall tlp
     systemctl enable tlp
 fi
 
@@ -38,12 +37,12 @@ fi
 
 # Terminal tools
 _notif_sep "Installing terminal tools (bash-completion, pacman-contrib, fastfetch, tmux)..."
-pacman -S --noconfirm bash-completion pacman-contrib fastfetch tmux
+_pacstall bash-completion pacman-contrib fastfetch tmux
 grep -qxF "fastfetch" /etc/bash.bashrc || echo "fastfetch" >> /etc/bash.bashrc
 
 # Sensors
 _notif_sep "Installing sensors (lm_sensors acpi acpid)..." 
-pacman -S --noconfirm lm_sensors acpi acpid 
+_pacstall lm_sensors acpi acpid 
 systemctl enable acpid
 _notif "Detecting sensors..."
 sensors-detect --auto
@@ -51,11 +50,11 @@ sensors-detect --auto
 # Networking
 _notif_sep "Networking..."
 _notif "Installing network monitor (vnstat)..."
-pacman -S --noconfirm vnstat
+_pacstall vnstat
 systemctl enable vnstat
 
 _notif "Installing networking tools (wget)..."
-pacman -S --noconfirm wget
+_pacstall wget
 
 # Use Encrypted DNS
 _notif_sep "Enabling EDNS..."
@@ -70,14 +69,14 @@ systemctl enable --now systemd-resolved
 
 # Firewall
 _notif_sep "Installing Firewall (ufw)..."
-pacman -S --noconfirm ufw
+_pacstall ufw
 ufw enable
 systemctl enable ufw
 
 # SSH
 _notif_sep "SSH..."
 _notif "Installing OpenSSH and fail2ban..."
-pacman -S --noconfirm openssh fail2ban
+_pacstall openssh fail2ban
 cp -n /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sed -i '/^\[sshd\]$/a enabled = true' /etc/fail2ban/jail.local
 systemctl enable --now fail2ban
